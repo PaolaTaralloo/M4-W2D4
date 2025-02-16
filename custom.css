@@ -1,0 +1,34 @@
+#footer{
+    height: 10em;
+    background-color: gainsboro;
+}
+
+#booksResults{
+    margin-bottom: 8em;
+}
+.card{
+    padding: 0;
+}
+
+.card-img-top{
+    max-height: 20em;
+    object-fit: cover;
+}
+.btn{
+    margin-right: 1em;
+    margin-top: 0.5em;
+}
+
+.btn-warning{
+    width: 6em;
+}
+
+.card-body h4, h5{
+    margin-bottom: 0;
+    font-size: 1em;
+    font-weight: bolder;
+}
+
+
+
+
