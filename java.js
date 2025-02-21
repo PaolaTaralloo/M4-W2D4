@@ -44,7 +44,7 @@ function renderBooks(books) {
 //4. Creo il div per la cardAction e lo appendo alla card
 //   Creo 2 bottoni e li appendo alla Cardbody
 //5. Ritorna l'intera card (cardLibrary)
-function createLibrary({ img, title, category, price }) {
+function createLibrary({ img, title, category, price, asin }) {
     const cardLibrary = document.createElement("div")
     cardLibrary.classList.add("card", "col-6", "col-md-4", "col-lg-3")
     //--------------------------------------------------------//
@@ -68,10 +68,17 @@ function createLibrary({ img, title, category, price }) {
     cardBody.appendChild(genreBook)
 
     const priceBook = document.createElement("h5")
-    priceBook.classList.add("card-text")
+    priceBook.classList.add("card-text", "mb-2")
     priceBook.innerText = "€ " + price
     cardBody.appendChild(priceBook)
+
+    const detail = document.createElement("a")
+    detail.innerText = "More"
+    detail.setAttribute('href', `bookDetail.html?bookId=${asin}`)
+    cardBody.appendChild(detail)
+
     //--------------------------------------------------------//
+
     const cardAction = document.createElement("div")
     cardAction.classList.add("card-body")
     cardLibrary.appendChild(cardAction)
@@ -87,6 +94,7 @@ function createLibrary({ img, title, category, price }) {
     cardAction.appendChild(hideBook)
 
     //--------------------------------------------------------//
+
     // Aggiugnere evento click al bottone Cart
     addToCart.addEventListener("click", () =>{
         cart.push({img, title, category, price})
