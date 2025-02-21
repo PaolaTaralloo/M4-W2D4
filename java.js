@@ -87,7 +87,7 @@ function createLibrary({ img, title, category, price }) {
     cardAction.appendChild(hideBook)
 
     //--------------------------------------------------------//
-    // Aggiugnere evento click al bottone 
+    // Aggiugnere evento click al bottone Cart
     addToCart.addEventListener("click", () =>{
         cart.push({img, title, category, price})
         console.log("Libro aggiunto al carrello:", cart)
@@ -95,8 +95,13 @@ function createLibrary({ img, title, category, price }) {
         cardLibrary.style.border = "2px solid red"
 
         updateCart()
-        })
+    })
 
+    // Aggiugnere evento click al bottone Hide
+    hideBook.addEventListener("click", () => {
+        cardLibrary.style.display = "none";  // Nascondi direttamente la card
+    })
+    
     return cardLibrary
 }
 
@@ -106,8 +111,7 @@ function updateCart(){
     const cartContainer = document.getElementById("shoppingBook")
     cartContainer.innerHTML = ""
     
-
-    cart.forEach((book) => {
+    cart.forEach((book, index) => {
         const cartItem = document.createElement("div")
         cartItem.classList.add("cart-item")
 
@@ -119,9 +123,23 @@ function updateCart(){
         cartPrice.innerText = "€ " + book.price
         cartItem.appendChild(cartPrice)
 
-        cartContainer.appendChild(cartItem)
+        const deleteIcon = document.createElement("button")
+        deleteIcon.classList.add("btn", "btn-sm", "btn-danger")
+        deleteIcon.innerHTML = '<i class="bi bi-trash"></i>'  
+        cartItem.appendChild(deleteIcon)
+
+        // Aggiugnere evento click al bottone delete
+        deleteIcon.addEventListener("click", () => {
+            cart.splice(index, 1); 
+            updateCart();  
+        });
+
+        cartContainer.appendChild(cartItem);
     });
+    
 }
+
+
 
 //CHIAMO LA FUNZIONE DELLA FECTH E CONCATENO LA FUNZIONE DI RENDER 
 recuperaDati()

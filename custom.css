@@ -29,6 +29,14 @@
     font-weight: bolder;
 }
 
+.btn-danger{
+    margin: 0;
+}
 
+.cartItem p {
+    margin: 0 !important;
+}
 
-
+.bi{
+    font-size: 1.5em;
+}
